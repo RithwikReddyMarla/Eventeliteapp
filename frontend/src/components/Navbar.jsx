@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Routes, Route } from 'react-router-dom';
+import { NavLink, Routes, Route } from 'react-router-dom';
 import { About } from '../pages/About';
 import { Events } from '../pages/Events';
 import { Galleries } from '../pages/Galleries';
@@ -30,15 +30,15 @@ export function Navbar() {
                     <span className="bar"></span>
                 </div>
                 <div className={`navbar_event__links ${isMenuOpen ? 'active' : ''}`}>
-                    <Link to="/" onClick={toggleMenu}>Home</Link>
-                    <Link to="/about" onClick={toggleMenu}>About</Link>
-                    <Link to="/events" onClick={toggleMenu}>Events</Link>
-                    <Link to="/gallery" onClick={toggleMenu}>Gallery</Link>
-                    <Link to="/contact" onClick={toggleMenu}>Contact</Link>
+                    <NavLink to="/" onClick={toggleMenu} className={({isActive}) => isActive ? 'active' : ''}>Home</NavLink>
+                    <NavLink to="/about" onClick={toggleMenu} className={({isActive}) => isActive ? 'active' : ''}>About</NavLink>
+                    <NavLink to="/events" onClick={toggleMenu} className={({isActive}) => isActive ? 'active' : ''}>Events</NavLink>
+                    <NavLink to="/gallery" onClick={toggleMenu} className={({isActive}) => isActive ? 'active' : ''}>Gallery</NavLink>
+                    <NavLink to="/contact" onClick={toggleMenu} className={({isActive}) => isActive ? 'active' : ''}>Contact</NavLink>
                     {!token ? (
                         <>
-                            <Link to="/login" onClick={toggleMenu}>Login</Link>
-                            <Link to="/register" onClick={toggleMenu}>Register</Link>
+                            <NavLink to="/login" onClick={toggleMenu} className={({isActive}) => isActive ? 'active' : ''}>Login</NavLink>
+                            <NavLink to="/register" onClick={toggleMenu} className={({isActive}) => isActive ? 'active' : ''}>Register</NavLink>
                         </>
                     ) : (
                         <a className="logout-button" onClick={handleLogout}>Logout</a>

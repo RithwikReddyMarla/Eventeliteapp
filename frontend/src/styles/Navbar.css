@@ -153,3 +153,18 @@ body, .home-container {
         padding: 8px 10px; 
     }
 }
+
+/* active nav item */
+.navbar_event__links a.active {
+    color: #7b5ea7; /* violet color */
+    /* background: rgba(123,94,167,0.08); */
+    border-radius: 6px;
+}
+
+/* ensure mobile active styling */
+@media (max-width: 768px) {
+    .navbar_event__links a.active {
+        background: #7b5ea7;
+        color: #fff;
+    }
+}

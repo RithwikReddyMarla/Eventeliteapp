@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Galleries.css';
 
 export function Galleries() {
     const [visibleImages, setVisibleImages] = useState(12); 
+    const [selectedImage, setSelectedImage] = useState(null); // url of opened image
 
     const imagegallery = [
   { url: "/images/haldi/haldi1.jpg", name: "Haldi Rangoli Mandap",price:"Turmeric Art Pavilio"},
@@ -37,6 +38,22 @@ export function Galleries() {
     const loadMoreImages = () => {
         setVisibleImages((prevVisibleImages) => prevVisibleImages + 12); 
     };
+
+    const openModal = (url) => {
+        setSelectedImage(url);
+        document.body.style.overflow = 'hidden'; // prevent background scroll
+    };
+
+    const closeModal = () => {
+        setSelectedImage(null);
+        document.body.style.overflow = ''; // restore scrolling
+    };
+
+    useEffect(() => {
+        const onKey = (e) => { if (e.key === 'Escape') closeModal(); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, []);
     return (
         <div className="gallery-container">
             <div className="gallery-heading">
@@ -46,7 +63,7 @@ export function Galleries() {
             <div className="gallery-grid">
                 {imagegallery.slice(0, visibleImages).map((image, index) => (
                     <div className="gallery-card" key={index}>
-                        <img src={image.url} alt={image.name} />
+                        <img src={image.url} alt={image.name} onClick={() => openModal(image.url)} />
                         <div className="gallery-caption">
                             <div className="gallery-name"><b>{image.name}</b></div>
                             {image.price && <div className="gallery-price">{image.price}</div>}
@@ -74,6 +91,20 @@ export function Galleries() {
                     </button>
                 </div>
             </div>
+
+            {selectedImage && (
+                <div
+                    className="gallery-modal"
+                    onClick={(e) => { if (e.target === e.currentTarget) closeModal(); }}
+                    role="dialog"
+                    aria-modal="true"
+                >
+                    <div className="gallery-modal__content">
+                        <button className="gallery-modal__close" onClick={closeModal} aria-label="Close">✕</button>
+                        <img src={selectedImage} alt="Preview" className="gallery-modal__img" />
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
