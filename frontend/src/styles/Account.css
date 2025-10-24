@@ -1,0 +1,201 @@
+/* ...existing code... */
+.page-container {
+  padding-top: 70px; /* ensure not under navbar */
+}
+
+.account-container {
+  /* center the card in the viewport */
+  min-height: 100vh;          /* fill viewport */
+  display: flex;
+  align-items: center;        /* vertical center */
+  justify-content: center;    /* horizontal center */
+  padding: 24px;
+  padding-top: 40px;          /* extra top space (top margin) */
+  box-sizing: border-box;
+}
+
+.account-box {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 50px;
+  max-width: 500px;
+  width: 100%;
+  text-align: left;           /* keep contents left-aligned inside centered box */
+  margin: 0 auto;
+}
+
+.account-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start; /* align header contents to left */
+  margin-bottom: 16px;
+}
+
+.account-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #e9e6ef;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.account-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.account-initials {
+  font-weight: 700;
+  color: #6b4f9a;
+  font-size: 1.4rem;
+}
+
+.account-meta {
+  text-align: left;       /* ensure meta text is left-aligned */
+}
+
+.account-meta h2 {
+  margin: 0;
+  font-size: 1.7rem;    /* larger, more prominent name */
+  color: #111827;
+  font-weight: 700;
+}
+
+.account-email {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+.account-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;   /* make rows fill the card width */
+}
+
+.account-list li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* left-align content */
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: transparent;
+  width: 100%;
+}
+
+.account-link,
+.fav-link,
+.logout-btn {
+  margin-left: 0;
+  text-align: left;
+}
+
+.account-row {
+  color: #444;
+}
+
+.account-password-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.password-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.password-input {
+  border: 1px solid #ddd;
+  padding: 8px 10px;
+  border-radius: 6px;
+  min-width: 180px;
+  background: #fafafa;
+  font-family: inherit;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.password-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.05rem;
+  padding: 6px;
+  border-radius: 6px;
+  color: #444;
+}
+
+/* keep appearance stable on hover/focus */
+.password-toggle:hover,
+.password-toggle:focus {
+  background: rgba(0,0,0,0.04);
+  outline: none;
+}
+
+.logout-btn {
+  background: #7b5ea7;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* Favourites: small professional box (same feel as small card) with heart immediately left */
+.fav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  /* background: #ffffff;  */
+  color: #111827;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(31,31,31,0.06);
+  border: 1px solid rgba(16,24,40,0.04);
+}
+
+/* heart immediate to left, subtle light color */
+.fav-heart {
+  font-size: 20px;
+  color: rgba(0,0,0,0.35); /* light black/gray for ecommerce look */
+  line-height: 1;
+  display: inline-block;
+}
+
+/* subtle hover elevation, no blue color */
+.fav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(31,31,31,0.08);
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .account-box { padding: 36px 28px; }
+  .account-meta h2 { font-size: 1.45rem; }
+  .fav-heart { font-size: 18px; }
+}
+
+@media (max-width: 600px) {
+  .account-box { padding: 24px 18px; max-width: 420px; }
+  .account-avatar { width: 64px; height: 64px; }
+  .account-meta h2 { font-size: 1.2rem; }
+  .fav-heart { font-size: 16px; }
+}
+
+/* ...existing code... */

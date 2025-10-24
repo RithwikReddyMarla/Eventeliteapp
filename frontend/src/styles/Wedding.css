@@ -97,21 +97,121 @@
 }
 
 .wedding-caption {
-    padding: 12px 0;
-    font-size: 1.08rem;
-    color: #444;
+    position: relative;
+    padding: 12px;
+    text-align: center;          /* center title/text */
     background: #f7faff;
+    color: #444;
+    display: block;              /* ensure block so absolute button can sit on right */
+}
+
+.wedding-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
 }
 
 .wedding-name {
-    margin-left:0px;
+    margin: 0 auto;
+    font-size: 1.06rem;
     font-weight: 600;
+    text-align: center;
 }
 
 .wedding-price {
-    margin-left:0px;
+    margin: 6px auto 0;
     font-weight: 500;
-    margin-top: 4px;
+    text-align: center;
+}
+
+/* heart icon (HTML) */
+.icon { display:inline-flex; align-items:center; justify-content:center; }
+.heart {
+  font-size: 20px;
+  color: #000; /* default empty heart: black */
+  transition: color 120ms ease, transform 120ms ease;
+  line-height: 1;
+  user-select: none;
+}
+.heart.filled {
+  color: #e53935; /* red when favourited */
+  transform: scale(1.05);
+}
+
+/* make clickable area a bit larger */
+.wedding-caption .icon { padding: 6px; border-radius: 6px; }
+
+/* keep focus visible for keyboard users */
+.icon:focus { outline: none; }
+.icon:focus-visible { box-shadow: 0 0 0 3px rgba(123,94,167,0.18); }
+
+/* fav heart button overlay (right-top, ecommerce style) */
+.wedding-card { position: relative; } /* ensure relative already set but keep for clarity */
+
+.fav-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* larger, professional plain heart */
+.heart-char {
+  font-size: 56px;                 /* keep same size for empty & filled */
+  line-height: 1;
+  user-select: none;
+  color: rgba(0,0,0,0.35);         /* lighter, ecommerce-like empty heart */
+  transition: none;                /* instant change, no scaling/animation */
+  display: inline-block;
+}
+
+/* ensure empty state uses the same size and light color */
+.fav-btn.empty .heart-char {
+  font-size: 36px;
+  color: rgba(0,0,0,0.35);
+}
+
+/* filled state: only change color to red, no scaling or size change */
+.fav-btn.filled .heart-char {
+  font-size: 36px;
+  color: #e53935;
+  transform: none;                 /* prevent any accidental scaling */
+}
+
+/* remove any rectangle/outline/box on hover/focus/active for the heart button */
+.fav-btn,
+.fav-btn:hover,
+.fav-btn:focus,
+.fav-btn:active {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* responsive scaling (adjust sizes only, still no transitions) */
+@media (max-width: 900px) {
+  .heart-char,
+  .fav-btn.empty .heart-char,
+  .fav-btn.filled .heart-char {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 600px) {
+  .heart-char,
+  .fav-btn.empty .heart-char,
+  .fav-btn.filled .heart-char {
+    font-size: 40px;
+  }
 }
 
 .details-overlay {
@@ -209,6 +309,7 @@
     .wedding-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    .heart-char { font-size: 46px; }
 }
 
 @media (max-width: 600px) {
@@ -223,4 +324,7 @@
     .wedding-card img {
         height: 120px;
     }
+    .fav-btn { width: 30px; height: 30px; }
+    .heart-char { font-size: 38px; }
+    .wedding-caption { padding: 10px; }
 }

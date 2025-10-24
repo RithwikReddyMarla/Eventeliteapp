@@ -7,6 +7,8 @@ import { Contact } from '../pages/Contact';
 import { Login } from '../pages/Login';
 import { Register } from '../pages/Register';
 import { Home } from '../pages/Home';
+import { Favourites } from '../pages/Favourites';
+import { Account } from '../pages/Account';
 import '../styles/Navbar.css';
 export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,7 +43,7 @@ export function Navbar() {
                             <NavLink to="/register" onClick={toggleMenu} className={({isActive}) => isActive ? 'active' : ''}>Register</NavLink>
                         </>
                     ) : (
-                        <a className="logout-button" onClick={handleLogout}>Logout</a>
+                        <NavLink to="/account" onClick={toggleMenu} className={({isActive}) => isActive ? 'active' : ''}>Account</NavLink>
                     )}
                 </div>
             </nav>
@@ -53,6 +55,8 @@ export function Navbar() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/account" element={<Account />} />
+                <Route path="/favourites" element={<Favourites />} />
             </Routes>
         </>
     );
